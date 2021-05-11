@@ -56,7 +56,6 @@ const TabViewCustom = ({ isHistoryTab, toggleTab }) => (
 );
 
 const SplashGif = () => {
-    const styles = useDynamicValue(dynamicStyles)
     return(
         <CView AC JC style={styles.container}>
             <CImage.beeHRSplashGif></CImage.beeHRSplashGif>
@@ -119,11 +118,11 @@ class Splash extends React.Component {
     }
 }
 
-const dynamicStyles = new DynamicStyleSheet({
+const styles = StyleSheet.create({
     container: {
         width: "100%",
         height: "100%",
-        backgroundColor: new DynamicValue('white', 'black')
+        backgroundColor: "black"
     }
 });
 

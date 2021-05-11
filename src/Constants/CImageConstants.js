@@ -195,6 +195,6 @@ export default {
   // email: require("../../assets/zeplin/email.png"),
   // phone_login: require("../../assets/zeplin/phone_login.png"),
   // mail_otp:require("../../assets/zeplin/mail_otp.png"),
-  // beeHRLogo: require("../../assets/images/bee.jpg"),
+  splashIcon: require("../../assets/images/splashIcon.png"),
   beeHRSplashGif: require("../../assets/images/BeeHR_Gif.gif")
 };
