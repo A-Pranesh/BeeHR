@@ -1,4 +1,4 @@
 export default {
-    Splash: "Splash",
-  };
-  
+  Splash: "Splash",
+  Login: 'Login'
+};

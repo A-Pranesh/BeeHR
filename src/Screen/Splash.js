@@ -20,43 +20,10 @@ import RouterConstants from "../Constants/RouterConstants";
 import CImage from "../Components/CImage";
 import _ from "lodash";
 import { DynamicStyleSheet, DynamicValue, useDynamicValue } from 'react-native-dynamic'
-
-const TabViewCustom = ({ isHistoryTab, toggleTab }) => (
-    <CView>
-        {isHistoryTab ? (
-            <CView FR JC style={{ justifyContent: "space-between" }}>
-                <View style={{ marginRight: 20 }}>
-                    <TouchableOpacity style={{ borderBottomWidth: 3, borderColor: "#f5a623", paddingBottom: 10 }} onPress={() => toggleTab("History")}>
-                        <CText.subHeaderLite>Domestic</CText.subHeaderLite>
-                    </TouchableOpacity>
-                </View>
-
-                <View>
-                    <TouchableOpacity onPress={() => toggleTab("UpComing")}>
-                        <CText.TabUnselectText>International</CText.TabUnselectText>
-                    </TouchableOpacity>
-                </View>
-            </CView>
-        ) : (
-                <CView FR JC style={{ justifyContent: "space-between" }}>
-                    <View style={{ marginRight: 20 }}>
-                        <TouchableOpacity onPress={() => toggleTab("History")}>
-                            <CText.TabUnselectText>Domestic</CText.TabUnselectText>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View>
-                        <TouchableOpacity style={{ borderBottomWidth: 3, borderColor: "#f5a623", paddingBottom: 10 }} onPress={() => toggleTab("UpComing")}>
-                            <CText.subHeaderLite>International</CText.subHeaderLite>
-                        </TouchableOpacity>
-                    </View>
-                </CView>
-            )}
-    </CView>
-);
+const GLOBAL = require("../Constants/GLOBAL.js");
 
 const SplashGif = () => {
-    return(
+    return (
         <CView AC JC style={styles.container}>
             <CImage.beeHRSplashGif></CImage.beeHRSplashGif>
         </CView>
@@ -94,18 +61,18 @@ class Splash extends React.Component {
 
     bootstrapAsync = async () => {
         const keys = [GLOBAL.LOGINTOKEN_KEY];
-        const {navigation} = this.props;
-  
+        const { navigation } = this.props;
+
         AsyncStorage.multiGet(keys, (err, stores) => {
-          const LOGINTOKEN_KEY = stores[0];
-          GLOBAL.LOGINTOKEN = LOGINTOKEN_KEY[1];
-    
-          if (GLOBAL.LOGINTOKEN == '' || GLOBAL.LOGINTOKEN == null) {
-            GLOBAL.LOGINTOKEN = "";
-            // this.props.navigation.replace(RouterConstants.Login)
-          } else {
-    
-          }
+            const LOGINTOKEN_KEY = stores[0];
+            GLOBAL.LOGINTOKEN = LOGINTOKEN_KEY[1];
+
+            if (_.isEmpty(GLOBAL.LOGINTOKEN)) {
+                GLOBAL.LOGINTOKEN = "";
+                this.props.navigation.replace(RouterConstants.Login)
+            } else {
+
+            }
         })
     }
 

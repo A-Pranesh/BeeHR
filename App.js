@@ -14,9 +14,11 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import getSlideFromRightTransition from "./config";
 import Splash from './src/Screen/Splash';
+import Login from './src/Screen/Login';
 import { Root } from "native-base";
 import { connect, Provider } from "react-redux";
 import { store } from "./src/Saga/store"
+import RouterConstants from "./src/Constants/RouterConstants";
 
 console.disableYellowBox = true;
 
@@ -45,7 +47,8 @@ TextInput.defaultProps = { ...(TextInput.defaultProps || {}), allowFontScaling: 
 
 const PushRouteOne = createStackNavigator(
   {
-    Splash
+    Splash,
+    Login
   },
   {
     headerMode: "none",
@@ -53,7 +56,7 @@ const PushRouteOne = createStackNavigator(
       headerVisible: false,
     },
     path: "home",
-    initialRouteName: "Splash",
+    initialRouteName: RouterConstants.Splash,
     transitionConfig: getSlideFromRightTransition,
   },
   {
